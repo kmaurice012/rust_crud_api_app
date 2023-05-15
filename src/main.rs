@@ -1,6 +1,6 @@
 use postgres::Error as PostgresError;
 use postgres::{Client, NoTls};
-use std::env;
+// use std::env;
 use std::io::{Read, Write};
 use std::net::{TcpListener, TcpStream};
 
@@ -16,7 +16,7 @@ struct User {
 }
 
 //DATABASE URL
-const DB_URL: &str = env!("DATABASE_URL");
+const DB_URL: &str = "postgresql://test:test@localhost:5243/postgres";
 
 //constants
 const OK_RESPONSE: &str = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n";
@@ -27,7 +27,7 @@ const INTERNAL_ERROR: &str = "HTTP/1.1 500 INTERNAL ERROR\r\n\r\n";
 fn main() {
     //Set Database
     if let Err(_) = set_database() {
-        println!("Error setting database");
+        println!("Error setting up the fucking database");
         return;
     }
 
